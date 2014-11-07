@@ -15,6 +15,8 @@ public class AnimatedImage {
     private BufferedImage[] images;
     private int[] animationOrder;
     private long startTime;
+    private int stopIndex;
+    private boolean isStopped;
 
     public AnimatedImage(double animSpeed, BufferedImage... imgs) {
         if (imgs.length < 1)
@@ -26,9 +28,12 @@ public class AnimatedImage {
             animationOrder[i] = i;
         transform = new AffineTransform();
         startTime = System.currentTimeMillis();
+        stopIndex = -1;
     }
 
     public void startAnimation() {
+        stopIndex = -1;
+        isStopped = false;
         startTime = System.currentTimeMillis();
     }
 
@@ -59,7 +64,34 @@ public class AnimatedImage {
     }
 
     private int getIndex() {
-        return (int) ((imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length);
+        int index = (int) ((imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length);
+        if (stopIndex == -1) {
+            isStopped = false;
+            startAnimation();
+        } else if (index == stopIndex)
+            isStopped = true;
+        if (isStopped)
+            index = stopIndex;
+        return index;
+    }
+
+    public void stopAnimation() {
+        stopAtIndex(0);
+    }
+
+    public void stopAtIndex(int index) {
+        stopAtIndex(index, false);
+    }
+
+    /**
+     * This method stops the animation at an index
+     *
+     * @param index       is the index to stop at
+     * @param jumpToIndex is whether or not animation should continue until the index is reached or just jump to it.
+     */
+    public void stopAtIndex(int index, boolean jumpToIndex) {
+        stopIndex = index;
+        isStopped = jumpToIndex;
     }
 
     public int[] getAnimationOrder() {
