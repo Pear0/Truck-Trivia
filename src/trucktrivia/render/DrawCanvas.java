@@ -17,7 +17,8 @@ public class DrawCanvas extends Canvas {
             while (isRunning) {
                 BufferStrategy buf = getBufferStrategy();
                 if (buf == null) {
-                    createBufferStrategy(2);
+                    if (isDisplayable())
+                        createBufferStrategy(2);
                     continue;
                 }
                 Graphics2D g = (Graphics2D) buf.getDrawGraphics();
@@ -29,6 +30,15 @@ public class DrawCanvas extends Canvas {
     });
 
     private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+
+    public DrawCanvas() {
+        this(false);
+    }
+
+    public DrawCanvas(boolean autoStart) {
+        if (autoStart)
+            start();
+    }
 
     public synchronized void render(Graphics2D g) {
         for (Drawable drawable : drawables)

@@ -64,10 +64,10 @@ public class AnimatedImage implements Drawable {
     }
 
     private int getIndex() {
-        int index = (int) ((imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length);
+        int index = (int) (imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length;
         if (stopIndex == -1) {
-            isStopped = false;
-            startAnimation();
+            if (isStopped)
+                startAnimation();
         } else if (index == stopIndex)
             isStopped = true;
         if (isStopped)
