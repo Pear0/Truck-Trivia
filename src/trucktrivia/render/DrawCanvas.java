@@ -48,8 +48,23 @@ public class DrawCanvas extends Canvas {
         return drawables;
     }
 
+    public void addDrawable(Drawable drawable) {
+        this.drawables.add(drawable);
+    }
+
+    public void addDrawables(Drawable... drawables) {
+        this.drawables.ensureCapacity(this.drawables.size() + drawables.length);
+        for (Drawable drawable : drawables)
+            addDrawable(drawable);
+    }
+
     public void setDrawables(ArrayList<Drawable> drawables) {
         this.drawables = drawables;
+    }
+
+    public void setDrawables(Drawable... drawables) {
+        this.drawables.clear();
+        addDrawables(drawables);
     }
 
 }

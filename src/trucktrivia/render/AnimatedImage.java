@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * @author William Gulian
  * @since 11/6/2014
  */
-public class AnimatedImage {
+public class AnimatedImage implements Drawable {
 
     private double imgsPerSecond;
     private AffineTransform transform;
