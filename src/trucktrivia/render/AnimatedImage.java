@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * @author William Gulian
  * @since 11/6/2014
  */
-public class AnimatedImage implements Drawable {
+public class AnimatedImage implements IDrawable, IPositioned {
 
     private double imgsPerSecond;
     private AffineTransform transform;
@@ -17,6 +17,7 @@ public class AnimatedImage implements Drawable {
     private long startTime;
     private int stopIndex;
     private boolean isStopped;
+    private int x, y;
 
     public AnimatedImage(double animSpeed, BufferedImage... imgs) {
         if (imgs.length < 1)
@@ -49,7 +50,7 @@ public class AnimatedImage implements Drawable {
 
     public void draw(Graphics2D g, int x, int y, int width, int height, int index) {
         AffineTransform oldTransform = g.getTransform();
-        g.translate(x, y);
+        g.translate(this.x + x, this.y + y);
         g.transform(transform);
         g.drawImage(images[animationOrder[index]], 0, 0, width, height, null);
         g.setTransform(oldTransform);
@@ -102,4 +103,29 @@ public class AnimatedImage implements Drawable {
         this.animationOrder = animationOrder;
     }
 
+    @Override
+    public void translate(int x, int y) {
+        this.x += x;
+        this.y += y;
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
 }

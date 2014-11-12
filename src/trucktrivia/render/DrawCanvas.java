@@ -29,7 +29,7 @@ public class DrawCanvas extends Canvas {
         }
     });
 
-    private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+    private ArrayList<IDrawable> drawables = new ArrayList<IDrawable>();
 
     public DrawCanvas() {
         this(false);
@@ -41,7 +41,7 @@ public class DrawCanvas extends Canvas {
     }
 
     public synchronized void render(Graphics2D g) {
-        for (Drawable drawable : drawables)
+        for (IDrawable drawable : drawables)
             drawable.draw(g, 0, 0);
     }
 
@@ -54,25 +54,25 @@ public class DrawCanvas extends Canvas {
         isRunning = false;
     }
 
-    public ArrayList<Drawable> getDrawables() {
+    public ArrayList<IDrawable> getDrawables() {
         return drawables;
     }
 
-    public void addDrawable(Drawable drawable) {
+    public void addDrawable(IDrawable drawable) {
         this.drawables.add(drawable);
     }
 
-    public void addDrawables(Drawable... drawables) {
+    public void addDrawables(IDrawable... drawables) {
         this.drawables.ensureCapacity(this.drawables.size() + drawables.length);
-        for (Drawable drawable : drawables)
+        for (IDrawable drawable : drawables)
             addDrawable(drawable);
     }
 
-    public void setDrawables(ArrayList<Drawable> drawables) {
+    public void setDrawables(ArrayList<IDrawable> drawables) {
         this.drawables = drawables;
     }
 
-    public void setDrawables(Drawable... drawables) {
+    public void setDrawables(IDrawable... drawables) {
         this.drawables.clear();
         addDrawables(drawables);
     }

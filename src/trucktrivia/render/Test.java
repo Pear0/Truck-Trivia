@@ -7,7 +7,7 @@ package trucktrivia.render;
 public class Test {
 
     public static void main(String[] args) {
-        AnimatedImage img = new AnimatedImage(20,
+        Positioned<AnimatedImage> img = new Positioned<AnimatedImage>(new AnimatedImage(20,
                 Resources.loadImage("numbers/0.png"),
                 Resources.loadImage("numbers/1.png"),
                 Resources.loadImage("numbers/2.png"),
@@ -18,7 +18,7 @@ public class Test {
                 Resources.loadImage("numbers/7.png"),
                 Resources.loadImage("numbers/8.png"),
                 Resources.loadImage("numbers/9.png"),
-                Resources.loadImage("numbers/10.png"));
+                Resources.loadImage("numbers/10.png")));
 
         DrawCanvas canvas = new DrawCanvas(true);
         canvas.addDrawable(img);
