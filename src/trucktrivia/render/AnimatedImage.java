@@ -65,7 +65,7 @@ public class AnimatedImage implements IDrawable, IPositioned {
     }
 
     private int getIndex() {
-        int index = (int) (imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length;
+        int index = (int) ((imgsPerSecond * (System.currentTimeMillis() - startTime) / 1000d) % animationOrder.length);
         if (stopIndex == -1) {
             if (isStopped)
                 startAnimation();
@@ -128,4 +128,13 @@ public class AnimatedImage implements IDrawable, IPositioned {
     public int getY() {
         return y;
     }
+
+    public int getWidth() {
+        return images[0].getWidth();
+    }
+
+    public int getHeight() {
+        return images[0].getHeight();
+    }
+
 }

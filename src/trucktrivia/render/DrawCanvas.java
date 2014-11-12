@@ -41,6 +41,7 @@ public class DrawCanvas extends Canvas {
     }
 
     public synchronized void render(Graphics2D g) {
+        g.clearRect(0, 0, getWidth(), getHeight());
         for (IDrawable drawable : drawables)
             drawable.draw(g, 0, 0);
     }
