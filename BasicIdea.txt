@@ -1,0 +1,13 @@
+Story Line (Java)
+
+Characters: Gus the Gas Can (greenhouse gas), Sarah the Sun, Sid the Solar Panel
+
+Story:
+
+Gus the Gas Can kidnaps Sarah the Sun, so Sid the Solar Panel must rescue her.
+
+Type of Game:
+
+Side Scroller (ex. Mario, Sonic, Jetpack Joyrides)
+Each level has a question at the end. The player must answer question to progress. They collect light bulbs, avoid coals/
+oil drums, and other NPC's. Lights bulbs are used to buy hints to get past a                                                 level. 
